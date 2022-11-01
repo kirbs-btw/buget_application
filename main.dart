@@ -28,15 +28,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   double money = 0;
+  String moneyDisplay = "0.00";
   List<Widget> _newEntry = [];
 
-  double amount = 19.00;
-  String description = "fuck";
+  double amount = 0;
+  String amountDisplay = "0.00";
+  String description = "";
+  DateTime date = DateTime(2022, 10, 31);
 
-  // format double amount
-  // add a 0 if missing to shot money
-  // format function
+  String formatDouble(double num){
+    return num * 10 == (num * 10).toInt() ? num.toString() + "0" : num.toString();
+  }
+
   void updateDescription(String text){
     description = text;
   }
@@ -50,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
       return AlertDialog(
         title: Text("new entry"),
         content: SizedBox(
-          height: 100,
+          height: 150,
           child: Column(
 
             children: <Widget>[
@@ -65,6 +70,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 decoration: InputDecoration(
                   hintText: "00.00",
                 ),
+              ),
+              MaterialButton(
+                child: Text('date'),
+                onPressed: () async{
+                  DateTime newDate = await showDatePicker(
+                    context: context,
+                    initialDate: date,
+                    firstDate: DateTime(1950),
+                    lastDate: DateTime(2100),
+                  );
+                  if (newDate == null) return;
+                  setState(() => date = newDate);
+                },
               ),
             ],
           ),
@@ -92,9 +110,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void addEntry(context) {
     Navigator.of(context).pop();
     money = money + amount;
-    print(money);
     money = double.parse(money.toStringAsFixed(2));
-    print(money);
+    moneyDisplay = formatDouble(money);
+    amountDisplay = formatDouble(amount);
 
     setState(() {
       _newEntry.add(_newContainer());
@@ -105,9 +123,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Container(
       width: 100,
       child: ListTile(
-        title: Text('$amount€'),
+        title: Text('$amountDisplay€'),
         subtitle: Text(description),
         leading: Icon(Icons.attach_money),
+        trailing: Text('${date.day}.${date.month}.${date.year}'),
       ),
       color: amount < 0 ? Colors.deepOrangeAccent : Colors.lightGreen,
     );
@@ -120,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          '$money€',
+          '$moneyDisplay€',
           style: TextStyle(
             fontFamily: 'Gothamhft',
             // insert font to files -------------------------------------
