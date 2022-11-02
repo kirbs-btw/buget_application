@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
+        scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.blueGrey,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
@@ -121,6 +121,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _newContainer() {
     return Container(
+      margin: EdgeInsets.only(top: 10, right:5, left:5),
+      decoration: BoxDecoration(
+          color: amount < 0 ? Colors.deepOrangeAccent : Colors.lightGreen,
+          borderRadius: BorderRadius.all(Radius.circular(20),
+          )
+      ),
       width: 100,
       child: ListTile(
         title: Text('$amountDisplay€'),
@@ -128,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: Icon(Icons.attach_money),
         trailing: Text('${date.day}.${date.month}.${date.year}'),
       ),
-      color: amount < 0 ? Colors.deepOrangeAccent : Colors.lightGreen,
+
     );
   }
 
