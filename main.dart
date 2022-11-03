@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         primarySwatch: Colors.blueGrey,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
@@ -48,6 +48,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void updateAmount(String text){
     amount = double.parse(text);
+  }
+
+  LinearGradient calcGradient(){
+    return LinearGradient(
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+      colors: [
+        amount < 0 ? Color(0xfff8385e) : Color(0xff8bf838),
+        Colors.transparent,
+      ],
+    );
   }
 
   _addEntryCard(BuildContext context){
@@ -121,20 +132,40 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _newContainer() {
     return Container(
-      margin: EdgeInsets.only(top: 10, right:5, left:5),
+      width: 50,
       decoration: BoxDecoration(
-          color: amount < 0 ? Colors.deepOrangeAccent : Colors.lightGreen,
-          borderRadius: BorderRadius.all(Radius.circular(20),
-          )
+        gradient: calcGradient(),
       ),
-      width: 100,
-      child: ListTile(
-        title: Text('$amountDisplay€'),
-        subtitle: Text(description),
-        leading: Icon(Icons.attach_money),
-        trailing: Text('${date.day}.${date.month}.${date.year}'),
-      ),
+      child: Container(
+        margin: EdgeInsets.only(top: 5, right:10, left:10, bottom: 5),
+        decoration: BoxDecoration(
+            color: Color(0x99303143),
+            borderRadius: BorderRadius.all(Radius.circular(20),
+            )
+        ),
+        width: 100, 
+        child: ListTile(
+          title: Text(
+              '$amountDisplay€',
+              style: TextStyle(
+                color: Colors.white,
+            )
+          ),
+          subtitle: Text(
+              description,
+              style: TextStyle(
+                color: Colors.white,
+              )
+          ),
+          trailing: Text(
+              '${date.day}.${date.month}.${date.year}',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+          ),
+        ),
 
+      ),
     );
   }
 
@@ -153,21 +184,59 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Colors.white,
           ),
         ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Color(0xff242335),
+                Color(0xff3b3e51),
+              ],
+            ),
+          ),
+        ),
       ),
-      body: ListView.builder(
-        itemCount: _newEntry.length,
-        itemBuilder: (context, index){
-          return _newEntry[index];
-        },
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomRight,
+            end: Alignment.topLeft,
+            colors: [
+              Color(0xff242335),
+              Color(0xff3b3e51),
+            ],
+          ),
+        ),
+        child: ListView.builder(
+          itemCount: _newEntry.length,
+          itemBuilder: (context, index){
+            return _newEntry[index];
+          },
+        ),
       ),
-
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        tooltip: 'party',
+        child: Ink(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color.fromRGBO(229, 141, 144, 1), Color.fromRGBO(248, 56, 94, 1)],
+            ),
+            borderRadius: BorderRadius.circular(100),
+          ),
+          child: Container(
+            width: 10000,
+            height: 10000,
+            alignment: Alignment.center,
+            child: const Icon(Icons.add),
+          ),
+        ),
+        onPressed: () {
           _addEntryCard(context);
         },
-        tooltip: 'Increment',
-        child: Icon( Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
