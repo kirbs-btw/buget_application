@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   LinearGradient calcGradient(){
     return LinearGradient(
       begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
+      end: Alignment.center,
       colors: [
         amount < 0 ? Color(0xfff8385e) : Color(0xff8bf838),
         Colors.transparent,
@@ -139,11 +139,18 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Container(
         margin: EdgeInsets.only(top: 5, right:10, left:10, bottom: 5),
         decoration: BoxDecoration(
-            color: Color(0x99303143),
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Color(0x77242335),
+                Color(0x773b3e51),
+              ],
+            ),
             borderRadius: BorderRadius.all(Radius.circular(20),
             )
         ),
-        width: 100, 
+        width: 100,
         child: ListTile(
           title: Text(
               '$amountDisplay€',
