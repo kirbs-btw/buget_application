@@ -64,26 +64,48 @@ class _MyHomePageState extends State<MyHomePage> {
   _addEntryCard(BuildContext context){
     return showDialog(context: context, builder: (context){
       return AlertDialog(
-        title: Text("new entry"),
+        backgroundColor: Color(0xff242335),
+        title: Text("new entry",
+            style: TextStyle(
+              color: Colors.white,
+            )
+        ),
         content: SizedBox(
           height: 150,
           child: Column(
 
             children: <Widget>[
               TextField(
+                style: TextStyle(
+                  color: Colors.white,
+                ),
                 onChanged: updateDescription,
                 decoration: InputDecoration(
                   hintText: "description",
+                  hintStyle: TextStyle(
+                    color: Colors.white30,
+                  ),
                 ),
               ),
               TextField(
+                style: TextStyle(
+                  color: Colors.white,
+                ),
                 onChanged: updateAmount,
                 decoration: InputDecoration(
                   hintText: "00.00",
+                  hintStyle: TextStyle(
+                    color: Colors.white30,
+                  ),
                 ),
               ),
               MaterialButton(
-                child: Text('date'),
+                child: Text(
+                    'date',
+                    style: TextStyle(
+                      color: Colors.white,
+                    )
+                ),
                 onPressed: () async{
                   DateTime newDate = await showDatePicker(
                     context: context,
@@ -101,14 +123,23 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[
           MaterialButton(
             elevation: 5.0,
-            child: Text("add"),
+            child: Text(
+                "add",
+                style: TextStyle(
+                  color: Colors.white,
+                )
+            ),
             onPressed: (){
               addEntry(context);
             },
           ),
           MaterialButton(
             elevation: 5.0,
-            child: Text("cancel"),
+            child: Text("cancel",
+                style: TextStyle(
+                  color: Colors.white,
+                )
+            ),
             onPressed: (){
               Navigator.of(context).pop();
             },
@@ -171,7 +202,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
           ),
         ),
-
       ),
     );
   }
