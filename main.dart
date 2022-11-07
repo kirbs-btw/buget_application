@@ -162,6 +162,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _newContainer() {
+    double amountSave = amount;
+    String descriptionSave = description;
+    DateTime dateSave = date;
+
     return Container(
       width: 50,
       decoration: BoxDecoration(
@@ -183,6 +187,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         width: 100,
         child: ListTile(
+          onTap: (){
+            print(descriptionSave);
+            print(amountSave);
+            print(dateSave);
+          },
           title: Text(
               '$amountDisplay€',
               style: TextStyle(
