@@ -1,4 +1,4 @@
-- make glass like cards with shimmer effekt
-- dark bg 
-- dark ui all together
-- click on the tile card to get more info
+- make glass like cards with shimmer effekt  	1
+- dark bg 					1
+- dark ui all together				1
+- floating card tile 				0
