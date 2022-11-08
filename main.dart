@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'overlay.dart';
+import 'package:flutter/rendering.dart';
 
-void main() => runApp(MyApp());
+
+void main() => runApp(MaterialApp(
+  initialRoute: '/home',
+  routes: {
+    '/home': (context) => MyHomePage(),
+    '/overlay': (context) => OverlayPage(),
+  },
+));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -188,9 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
         width: 100,
         child: ListTile(
           onTap: (){
-            print(descriptionSave);
-            print(amountSave);
-            print(dateSave);
+            Navigator.pushNamed(context, '/overlay');
           },
           title: Text(
               '$amountDisplay€',
@@ -262,7 +269,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        tooltip: 'party',
+        tooltip: 'add entry',
         child: Ink(
           decoration: BoxDecoration(
             gradient: LinearGradient(
