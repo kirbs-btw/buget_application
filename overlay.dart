@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 
 import 'main.dart';
 
+
+
+
 class MyApp  extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -32,51 +35,42 @@ class OverlayPage extends StatefulWidget {
 }
 
 class _OverlayPage extends State<OverlayPage> {
-  String partyName = '';
-  String partyDescription = '';
-  String partyDate = '';
-
-
-  void updateName(String text){
-    partyName = text;
-  }
-
-  void updateDescription(String text){
-    partyDescription = text;
-  }
-
-  void updateDate(String text){
-    partyDate = text;
-  }
-
-  void listParty(){
-    print(partyName);
-    print(partyDescription);
-    print(partyDate);
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(50),
-              width: 10000,
-              height: 600,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(25)),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xdd242335),
-                    Color(0xdd3b3e51),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft,
+              colors: [
+                Color(0xff242335),
+                Color(0xff3b3e51),
+              ],
+            ),
+          ),
+          child: Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.fromLTRB(20, 50, 20, 50),
+                width: 10000,
+                height: 650,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  color:  Color(0xee242335),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Text(currentData.description),
+                    Text(currentData.amount.toString()),
+                    Text(currentData.index.toString()),
+                    Text(currentData.date.toString()),
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
