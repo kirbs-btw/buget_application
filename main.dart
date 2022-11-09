@@ -3,6 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'overlay.dart';
 import 'package:flutter/rendering.dart';
 
+class dataSave{
+  double amount;
+  String description;
+  int index;
+  DateTime date;
+}
+
+var currentData = new dataSave();
+
+
 
 void main() => runApp(MaterialApp(
   initialRoute: '/home',
@@ -174,6 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
     double amountSave = amount;
     String descriptionSave = description;
     DateTime dateSave = date;
+    int indexSave = _newEntry.length;
 
     return Container(
       width: 50,
@@ -197,6 +208,11 @@ class _MyHomePageState extends State<MyHomePage> {
         width: 100,
         child: ListTile(
           onTap: (){
+            currentData.amount = amountSave;
+            currentData.description = descriptionSave;
+            currentData.date = dateSave;
+            currentData.index = indexSave;
+
             Navigator.pushNamed(context, '/overlay');
           },
           title: Text(
