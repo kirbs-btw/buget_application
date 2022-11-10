@@ -62,10 +62,38 @@ class _OverlayPage extends State<OverlayPage> {
                 ),
                 child: Column(
                   children: <Widget>[
-                    Text(currentData.description),
-                    Text(currentData.amount.toString()),
-                    Text(currentData.index.toString()),
-                    Text(currentData.date.toString()),
+                    Text(
+                        currentData.description,
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: 'Gotham Black',
+                          color: Colors.white,
+                        ),
+                    ),
+                    Text(
+                      currentData.amount.toString(),
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'Gotham Black',
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      currentData.index.toString(),
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'Gotham Black',
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      '${currentData.date.day}.${currentData.date.month}.${currentData.date.year}',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'Gotham Black',
+                        color: Colors.white,
+                      ),
+                    ),
                   ],
                 ),
               ),
