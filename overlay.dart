@@ -120,6 +120,7 @@ class _OverlayPage extends State<OverlayPage> {
           ),
         ),
         onPressed: () {
+          print(newEntryValues);
           Navigator.pushNamed(context, '/home');
         },
       ),
