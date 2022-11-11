@@ -11,7 +11,8 @@ class dataSave{
 }
 
 var currentData = new dataSave();
-
+List<Widget> newEntry = [];
+List newEntryValues = [];
 
 
 void main() => runApp(MaterialApp(
@@ -50,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   double money = 0;
   String moneyDisplay = "0.00";
-  List<Widget> _newEntry = [];
+
 
   double amount = 0;
   String amountDisplay = "0.00";
@@ -176,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
     amountDisplay = formatDouble(amount);
 
     setState(() {
-      _newEntry.add(_newContainer());
+      newEntry.add(_newContainer());
     });
   }
 
@@ -184,7 +185,9 @@ class _MyHomePageState extends State<MyHomePage> {
     double amountSave = amount;
     String descriptionSave = description;
     DateTime dateSave = date;
-    int indexSave = _newEntry.length;
+    int indexSave = newEntry.length;
+
+    newEntryValues.add([amountSave, descriptionSave, dateSave]);
 
     return Container(
       width: 50,
@@ -212,6 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
             currentData.description = descriptionSave;
             currentData.date = dateSave;
             currentData.index = indexSave;
+            newEntryValues[currentData.index][0] += 1;
 
             Navigator.pushNamed(context, '/overlay');
           },
@@ -278,9 +282,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         child: ListView.builder(
-          itemCount: _newEntry.length,
+          itemCount: newEntry.length,
           itemBuilder: (context, index){
-            return _newEntry[index];
+            return newEntry[index];
           },
         ),
       ),
